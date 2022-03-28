@@ -1,3 +1,13 @@
+<?php
+/**
+ * View para a Calculadora
+ * @package View Calculadora
+ * @author Samuel Chiodini 
+ * @since 27/03/2022
+ */
+require_once('./enum/enum_operador.php');
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -16,28 +26,28 @@
              <a href="?numero=1" class="btn btn-success">1</a>
             <a href="?numero=2" class="btn btn-success">2</a>
             <a href="?numero=3" class="btn btn-success">3</a>
-            <a href="?operador=" class="btn btn-success">+</a>
+            <a href="?operador=<?= EnumOperador::MAIS?>" class="btn btn-success">+</a>
 
             <br>
             
             <a href="?numero=4" class="btn btn-success">4</a>
             <a href="?numero=5" class="btn btn-success">5</a>
             <a href="?numero=6" class="btn btn-success">6</a>
-            <a href="?operador=" class="btn btn-success">-</a>
+            <a href="?operador=<?= EnumOperador::MENOS?>" class="btn btn-success">-</a>
             
             <br>
             
             <a href="?numero=7" class="btn btn-success">7</a>
             <a href="?numero=8" class="btn btn-success">8</a>
             <a href="?numero=9" class="btn btn-success">9</a>
-            <a href="?operador=>" class="btn btn-success">/</a>
+            <a href="?operador=<?= EnumOperador::DIVISAO?>" class="btn btn-success">/</a>
             
             <br>
             
             <a href="?numero=0" class="btn btn-success">0</a>
             <a href="?clear=>" class="btn btn-success">C</a>
-            <a href="?igual=" class="btn btn-success">=</a>
-            <a href="?operador=" class="btn btn-success">*</a>
+            <a href="?igual=<?= EnumOperador::IGUAL?>" class="btn btn-success">=</a>
+            <a href="?operador=<?= EnumOperador::MULTIPLICACAO?>" class="btn btn-success">*</a>
         </div>
     </div>
 </body>

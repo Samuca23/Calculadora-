@@ -10,38 +10,36 @@
 </head>
 
 <body>
-    <form action="calcula.php" method="POST">
-        <table>
-            <tr>
-                <div names="resultado" action="?valor1?valor2"></div>
-            </tr>
-            <tr>
-                <td><button class="btn btn-dark" value="1" name="valor">1</button></td>
-                <td><button class="btn btn-dark" value="2" name="valor">2</button></td>
-                <td><button class="btn btn-dark" value="3" name="valor">3</button></td>
-                <td><button class="btn btn-success" name="operador" value="adi">+</button></td>
-            </tr>
-            <tr>
-                <td><button class="btn btn-dark" value="4" name="valor">4</button></td>
-                <td><button class="btn btn-dark" value="5" name="valor">5</button></td>
-                <td><button class="btn btn-dark" value="6" name="valor">6</button></td>
-                <td><button class="btn btn-success" name="operador" value="sub">-</button></td>
+    <div class="calculadora">
+        <input type="text" class="form-action" value="">
+        <div class="valores">
+             <a href="?numero=1" class="btn btn-success">1</a>
+            <a href="?numero=2" class="btn btn-success">2</a>
+            <a href="?numero=3" class="btn btn-success">3</a>
+            <a href="?operador=" class="btn btn-success">+</a>
 
-            </tr>
-            <tr>
-                <td><button class="btn btn-dark" value="7" name="valor">7</button></td>
-                <td><button class="btn btn-dark" value="8" name="valor">8</button></td>
-                <td><button class="btn btn-dark" value="9" name="valor">9</button></td>
-                <td><button class="btn btn-success" name="operador" value="multi">X</button></td>
-            </tr>
-            <tr>
-                <td><button class="btn btn-dark" value="0" name="valor">0</button></td>
-                <td><button class="btn btn-success" name="operador" value="div">/</button></td>
-                <td><button class="btn btn-success" name="limpa">C</button></td>
-                <td><button class="btn btn-success" name="igual">=</button></td>
-            </tr>
-        </table>
-    </form>
+            <br>
+            
+            <a href="?numero=4" class="btn btn-success">4</a>
+            <a href="?numero=5" class="btn btn-success">5</a>
+            <a href="?numero=6" class="btn btn-success">6</a>
+            <a href="?operador=" class="btn btn-success">-</a>
+            
+            <br>
+            
+            <a href="?numero=7" class="btn btn-success">7</a>
+            <a href="?numero=8" class="btn btn-success">8</a>
+            <a href="?numero=9" class="btn btn-success">9</a>
+            <a href="?operador=>" class="btn btn-success">/</a>
+            
+            <br>
+            
+            <a href="?numero=0" class="btn btn-success">0</a>
+            <a href="?clear=>" class="btn btn-success">C</a>
+            <a href="?igual=" class="btn btn-success">=</a>
+            <a href="?operador=" class="btn btn-success">*</a>
+        </div>
+    </div>
 </body>
 
 </html>

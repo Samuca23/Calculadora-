@@ -9,7 +9,9 @@
  */
 class EnumCalculadora {
  
-    const OPERADOR = 'operador',
-          OPERACAO = 'operacao',
-          NUMERO   = 'numero';
+    const OPERADOR     = 'operador',
+          OPERACAO     = 'operacao',
+          NUMERO       = 'numero',
+          GUARDANUMERO = 'anterior',
+          QUANTIDADE_OPERADORES = 'quantidade_operador';
 }

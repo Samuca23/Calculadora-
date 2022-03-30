@@ -19,6 +19,57 @@ class Calculadora{
     }
     
     
+    public function processRequest() {
+        if (!empty($_GET))
+        {
+            if (isset($_GET[EnumCalculadora::NUMERO])) 
+            {
+                $_SESSION[EnumCalculadora::LAST] = EnumCalculadora::NUMERO;
+                $_SESSION[EnumCalculadora::OPERATION] .= $this->getNumeroSelecionado();
+                $_SESSION[EnumCalculadora::VISOR] .= $this->getNumeroSelecionado();
+            } 
+            else if (isset($_GET[EnumCalculadora::OPERADOR])) 
+            {
+                if ($_SESSION[EnumCalculadora::GUARDANUMERO] != EnumCalculator::OPERADOR) 
+                {
+                    $_SESSION[EnumCalculadora::QUANTIDADE_OPERADORES]++;
+                    if ($_SESSION[EnumCalculadora::QUANTIDADE_OPERADORES] >= 2) 
+                    {
+                        $this->calcula();
+                    } 
+                    else 
+                    {
+                        $_SESSION[EnumCalculadora::LAST] = EnumCalculadora::OPERADOR;
+                        $this->setOperadorTratado();
+                        $this->limpaVisor();
+                    }
+                }
+            }
+            else if (isset($_GET[EnumCalculadora::IGUAL])) 
+            {
+                $this->efetuaCalculo();
+            }
+            else if (isset($_GET[EnumCalculadora::CLEAR])) 
+            {
+                $_SESSION[EnumCalculadora::OPERATION] = '';
+                $this->limpaVisor();
+            }
+        }
+    }
+    
+    private function limpaVisor() : void
+    {
+        $_SESSION[EnumCalculatorEnumCalculadora::VISOR] = '';
+    }
+    
+    private function efetuaCalculo() {
+        $xResultado = null;
+        $_SESSION[EnumCalculadora::QUANTIDADE_OPERADORES] = 0;
+        $sOperacao = $_SESSION[EnumCalculadora::OPERACAO];
+        eval('$xResultado = '.$sOperacao.';');
+        $this->setValorVisor($xResultado);
+        $this->setValorOperacao($xResultado);
+    }
 
     /**
      * Método para retornar o valor

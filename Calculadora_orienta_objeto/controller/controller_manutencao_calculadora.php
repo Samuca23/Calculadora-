@@ -57,11 +57,18 @@ class Calculadora{
         }
     }
     
-    private function limpaVisor() : void
+    /**
+     * Para limpar o visor
+     * 
+     */
+    private function limpaVisor() 
     {
         $_SESSION[EnumCalculatorEnumCalculadora::VISOR] = '';
     }
     
+    /**
+     * Para efetuar o calculo
+     */
     private function efetuaCalculo() {
         $xResultado = null;
         $_SESSION[EnumCalculadora::QUANTIDADE_OPERADORES] = 0;
@@ -71,8 +78,22 @@ class Calculadora{
         $this->setValorOperacao($xResultado);
     }
     
+    /**
+     * Para setar o valor do visor
+     * 
+     * @param bool $xValor
+     */
     private function setValorVisor($xValor) {
         $_SESSION[EnumCalculadora::VISOR] = $xValor;
+    }
+    
+    /**
+     * Para setar o valor da operacao
+     * 
+     * @param bool $xOperacao
+     */
+    private function setValorOperacao($xOperacao) {
+        $_SESSION[EnumCalculadora::OPERACAO] = $xOperacao;
     }
 
     /**

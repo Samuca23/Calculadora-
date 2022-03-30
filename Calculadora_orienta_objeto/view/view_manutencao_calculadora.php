@@ -23,7 +23,7 @@ require_once('./enum/enum_operador.php');
     <div class="calculadora">
         <input type="text" class="form-action" value="">
         <div class="valores">
-             <a href="?numero=1" class="btn btn-success">1</a>
+            <a href="?numero=1" class="btn btn-success">1</a>
             <a href="?numero=2" class="btn btn-success">2</a>
             <a href="?numero=3" class="btn btn-success">3</a>
             <a href="?operador=<?= EnumOperador::MAIS?>" class="btn btn-success">+</a>

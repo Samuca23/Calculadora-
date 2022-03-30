@@ -64,8 +64,10 @@ class Calculadora{
         }
         return $sOperador;
     }
-
-
+    
+    private function setOperadorTratado() {
+        $_SESSION[EnumCalculadora::OPERACAO] .= $this->trataOperador();
+    }
 
     /**
      *  Montagem da Tela

@@ -10,5 +10,6 @@
 class EnumCalculadora {
  
     const OPERADOR = 'operador',
+          OPERACAO = 'operacao',
           NUMERO   = 'numero';
 }

@@ -12,6 +12,7 @@ class EnumCalculadora {
     const VISOR        = 'visor',
           OPERADOR     = 'operador',
           OPERACAO     = 'operacao',
+          LIMPA        = 'limpa',
           NUMERO       = 'numero',
           GUARDANUMERO = 'anterior',
           QUANTIDADE_OPERADORES = 'quantidade_operador';

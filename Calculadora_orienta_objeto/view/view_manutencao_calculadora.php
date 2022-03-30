@@ -21,7 +21,7 @@ require_once('./enum/enum_operador.php');
 
 <body>
     <div class="calculadora">
-        <input type="text" class="form-action" value="">
+        <input type="text" class="form-action" value=" <?= Calculadora::getVisor() ?> ">
         <div class="valores">
             <a href="?numero=1" class="btn btn-success">1</a>
             <a href="?numero=2" class="btn btn-success">2</a>
@@ -45,7 +45,7 @@ require_once('./enum/enum_operador.php');
             <br>
             
             <a href="?numero=0" class="btn btn-success">0</a>
-            <a href="?clear=>" class="btn btn-success">C</a>
+            <a href="?limpa=<?= EnumCalculadora::LIMPA?>" class="btn btn-success">C</a>
             <a href="?igual=<?= EnumOperador::IGUAL?>" class="btn btn-success">=</a>
             <a href="?operador=<?= EnumOperador::MULTIPLICACAO?>" class="btn btn-success">*</a>
         </div>

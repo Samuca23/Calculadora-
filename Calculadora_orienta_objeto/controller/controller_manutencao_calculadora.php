@@ -8,6 +8,7 @@
  * @since 27/03/2022
  */
 require_once ('./enum/enum_calculadora.php');
+require_once ('./enum/enum_operador.php');
 
 class Calculadora{
     
@@ -15,46 +16,73 @@ class Calculadora{
      *  Para começar a calculadora
      */
     public function abreCalculadora() {
-        $this->montaTela();
+        $oCalculadota = Calculadora::getInstance();
+        $oCalculadota->initSession();
+        $oCalculadota->loadSession();
+        $oCalculadota->montaTela();
     }
     
     
-    public function processRequest() {
+     /**
+     * Inicia a sessão caso não tenha sido iniciada.
+     */
+    public function initSession() : void
+    {
+        session_start();
+        if (!isset($_SESSION[EnumCalculadora::GUARDANUMERO]) && !isset($_SESSION[EnumCalculadora::VISOR]) && !isset($_SESSION[EnumCalculadora::OPERACAO]))
+        {
+            $_SESSION[EnumCalculadora::GUARDANUMERO] = EnumCalculadora::NUMERO;
+            $_SESSION[EnumCalculadora::VISOR] = '';
+            $_SESSION[EnumCalculadora::OPERACAO] = '';
+            $_SESSION[EnumCalculadora::QUANTIDADE_OPERADORES] = 0;
+        }
+    }
+    
+    public function loadSession() {
         if (!empty($_GET))
         {
             if (isset($_GET[EnumCalculadora::NUMERO])) 
             {
-                $_SESSION[EnumCalculadora::LAST] = EnumCalculadora::NUMERO;
-                $_SESSION[EnumCalculadora::OPERATION] .= $this->getNumeroSelecionado();
+                $_SESSION[EnumCalculadora::GUARDANUMERO] = EnumCalculadora::NUMERO;
+                $_SESSION[EnumCalculadora::OPERACAO] .= $this->getNumeroSelecionado();
                 $_SESSION[EnumCalculadora::VISOR] .= $this->getNumeroSelecionado();
             } 
             else if (isset($_GET[EnumCalculadora::OPERADOR])) 
             {
-                if ($_SESSION[EnumCalculadora::GUARDANUMERO] != EnumCalculator::OPERADOR) 
+                if ($_SESSION[EnumCalculadora::GUARDANUMERO] != EnumCalculadora::OPERADOR) 
                 {
                     $_SESSION[EnumCalculadora::QUANTIDADE_OPERADORES]++;
                     if ($_SESSION[EnumCalculadora::QUANTIDADE_OPERADORES] >= 2) 
                     {
-                        $this->calcula();
+                        $this->efetuaCalculo();
                     } 
                     else 
                     {
-                        $_SESSION[EnumCalculadora::LAST] = EnumCalculadora::OPERADOR;
+                        $_SESSION[EnumCalculadora::GUARDANUMERO] = EnumCalculadora::OPERADOR;
                         $this->setOperadorTratado();
                         $this->limpaVisor();
                     }
                 }
             }
-            else if (isset($_GET[EnumCalculadora::IGUAL])) 
+            else if (isset($_GET[EnumOperador::IGUAL])) 
             {
                 $this->efetuaCalculo();
             }
-            else if (isset($_GET[EnumCalculadora::CLEAR])) 
+            else if (isset($_GET[EnumCalculadora::LIMPA])) 
             {
-                $_SESSION[EnumCalculadora::OPERATION] = '';
+                $_SESSION[EnumCalculadora::OPERACAO] = '';
                 $this->limpaVisor();
             }
         }
+    }
+    
+    /**
+     * Retorna uma instância da classe.
+     * @return \self
+     */
+    public static function getInstance() : self
+    {
+        return new self();
     }
     
     /**
@@ -63,7 +91,7 @@ class Calculadora{
      */
     private function limpaVisor() 
     {
-        $_SESSION[EnumCalculatorEnumCalculadora::VISOR] = '';
+        $_SESSION[EnumCalculadora::VISOR] = '';
     }
     
     /**
@@ -111,7 +139,7 @@ class Calculadora{
      * @return $_GET
      */
     private function getOperadorSelecionado() {
-         return htmlspecialchars($_GET[EnumCalculator::OPERADOR], ENT_COMPAT);
+         return htmlspecialchars($_GET[EnumCalculadora::OPERADOR], ENT_COMPAT);
     }
     
     /**
@@ -143,6 +171,11 @@ class Calculadora{
     
     private function setOperadorTratado() {
         $_SESSION[EnumCalculadora::OPERACAO] .= $this->trataOperador();
+    }
+    
+    private function getVisor() {
+        $oCalculadora = Calculadora::getInstance();
+        return $_SESSION[EnumCalculadora::VISOR];
     }
 
     /**

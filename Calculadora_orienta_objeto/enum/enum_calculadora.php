@@ -9,7 +9,8 @@
  */
 class EnumCalculadora {
  
-    const OPERADOR     = 'operador',
+    const VISOR        = 'visor',
+          OPERADOR     = 'operador',
           OPERACAO     = 'operacao',
           NUMERO       = 'numero',
           GUARDANUMERO = 'anterior',

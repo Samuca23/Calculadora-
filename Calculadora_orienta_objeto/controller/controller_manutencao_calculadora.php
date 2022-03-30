@@ -70,6 +70,10 @@ class Calculadora{
         $this->setValorVisor($xResultado);
         $this->setValorOperacao($xResultado);
     }
+    
+    private function setValorVisor($xValor) {
+        $_SESSION[EnumCalculadora::VISOR] = $xValor;
+    }
 
     /**
      * Método para retornar o valor
